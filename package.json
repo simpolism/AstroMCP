@@ -1,21 +1,19 @@
 {
-  "name": "mcp-starter",
-  "description": "An opinionated starter project for Model Context Protocol (MCP) servers",
+  "name": "astro-mcp",
+  "description": "An MCP server for querying astrological data.",
   "author": {
-    "name": "Steven Stavrakis",
-    "email": "steven@stavrak.is",
-    "url": "https://stavrak.is",
-    "github": "https://github.com/StevenStavrakis"
+    "name": "Simpolism",
+    "email": "simpolism@gmail.com",
+    "github": "https://github.com/simpolism"
   },
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/StevenStavrakis/mcp-starter.git"
+    "url": "https://github.com/simpolism/AstroMCP.git"
   },
   "module": "main.ts",
   "type": "module",
   "bin": {
-    "mcp-starter": "dist/index.js"
+    "astro-mcp": "dist/main.js"
   },
   "files": ["dist"],
   "scripts": {
@@ -32,8 +30,7 @@
     "release:minor": "standard-version --release-as minor && bun run update-version",
     "release:major": "standard-version --release-as major && bun run update-version",
     "release:patch": "standard-version --release-as patch && bun run update-version",
-    "update-version": "sed -i '' -e 's/export const VERSION = .*/export const VERSION = '\"'$(node -p 'require(\"./package.json\").version')'\"';/' src/main.ts",
-    "create-tool": "bun scripts/create-tool.ts"
+    "update-version": "sed -i '' -e 's/export const VERSION = .*/export const VERSION = '\"'$(node -p 'require(\"./package.json\").version')'\"';/' src/main.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -46,6 +43,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.1.1",
     "@types/json-schema": "^7.0.15",
+    "chart2txt": "^0.3.1",
     "pretty-js-log": "^1.1.1",
     "zod": "^3.24.1",
     "zod-to-json-schema": "^3.24.1"

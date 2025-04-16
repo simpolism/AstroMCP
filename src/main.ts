@@ -11,24 +11,10 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { createTools } from "./tools";
 
-/* You can remove this section if you don't need to validate command line arguments */
-/* You'll have to handle the error yourself */
-/*
-const expectedArgs = [
-	"expected-arg-1",
-	"expected-arg-2",
-]
-const args = process.argv.slice(2);
-if (args.length < expectedArgs.length) {
-	console.error("CLI arguments not provided. If you are getting this error and don't know why, you probably need to remove CLI argument logic in main.ts");
-	process.exit(1);
-}
-*/
-
 // Initialize server
 const server = new Server(
 	{
-		name: "MCP SERVER NAME",
+		name: "AstroMCP",
 		version: VERSION,
 	},
 	{
@@ -73,7 +59,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function runServer() {
 	const transport = new StdioServerTransport();
 	await server.connect(transport);
-	console.error("Todoist MCP Server running on stdio");
+	console.error("AstroMCP Server running on stdio");
 }
 
 runServer().catch((error) => {
