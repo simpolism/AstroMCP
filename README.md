@@ -91,7 +91,7 @@ To add your AstroMCP server to Claude Desktop:
    ```json
    {
      "mcpServers": {
-       "astro-mcp": {
+       "astrology-mcp-server": {
          "command": "/path/to/node",
          "args": ["/path/to/AstroMCP/dist/main.js"]
        }
@@ -122,7 +122,7 @@ Add to your Claude Desktop config:
   "mcpServers": {
     "astro-server": {
       "command": "npx",
-      "args": ["-y", "astro-mcp"]
+      "args": ["-y", "astrology-mcp-server"]
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "astro-mcp",
+  "name": "astrology-mcp-server",
   "description": "An MCP server for querying astrological data.",
   "version": "0.0.1",
   "author": {
@@ -14,7 +14,7 @@
   "module": "main.ts",
   "type": "module",
   "bin": {
-    "astro-mcp": "dist/main.js"
+    "astrology-mcp-server": "dist/main.js"
   },
   "files": ["dist"],
   "scripts": {
