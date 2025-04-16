@@ -17,7 +17,7 @@ describe("getChart", () => {
 					},
 					{
 							"name": "Moon",
-							"longitude": 351.74235041440085
+							"longitude": 351.7423504144008
 					},
 					{
 							"name": "Mercury",
@@ -37,7 +37,7 @@ describe("getChart", () => {
 					},
 					{
 							"name": "Saturn",
-							"longitude": 54.580264818648075
+							"longitude": 54.58026481864807
 					},
 					{
 							"name": "Uranus",

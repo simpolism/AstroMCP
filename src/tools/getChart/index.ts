@@ -32,6 +32,7 @@ export async function geocodeLocation(
 
 // TODO: host locally
 const ASTRO_API_ENDPOINT = "https://simple-astro-api.netlify.app/api/positions";
+// const ASTRO_API_ENDPOINT = "http://localhost:8888/api/positions";
 
 interface PlanetPosition {
 	name: string;
@@ -104,8 +105,8 @@ export const getChart = async (args: GetChartSchema): Promise<string> => {
 		const astroData = await getPlanetaryPositions(
 			args.date,
 			args.time,
-			longitude,
 			latitude,
+			longitude,
 		);
 
 		// return chart2txt string
