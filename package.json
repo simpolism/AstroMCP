@@ -1,6 +1,7 @@
 {
   "name": "astro-mcp",
   "description": "An MCP server for querying astrological data.",
+  "version": "0.0.1",
   "author": {
     "name": "Simpolism",
     "email": "simpolism@gmail.com",
@@ -8,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/simpolism/AstroMCP.git"
+    "url": "git+https://github.com/simpolism/AstroMCP.git"
   },
   "module": "main.ts",
   "type": "module",
@@ -26,16 +27,11 @@
     "lint": "bunx biome lint --write src",
     "format": "bunx biome format --write src",
     "check": "bunx biome check --write src",
-    "release": "standard-version && bun run update-version",
-    "release:minor": "standard-version --release-as minor && bun run update-version",
-    "release:major": "standard-version --release-as major && bun run update-version",
-    "release:patch": "standard-version --release-as patch && bun run update-version",
     "update-version": "sed -i '' -e 's/export const VERSION = .*/export const VERSION = '\"'$(node -p 'require(\"./package.json\").version')'\"';/' src/main.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest",
-    "standard-version": "^9.5.0"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

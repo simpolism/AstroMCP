@@ -1,7 +1,7 @@
 import type { ToolRegistration } from "@/types";
 import { makeJsonSchema } from "@/utils/makeJsonSchema";
 import { type GetChartSchema, getChartSchema } from "./schema";
-import chart2txt from "chart2txt";
+import { chart2txt } from "chart2txt";
 
 // Function to geocode location using OpenStreetMap API
 // TODO: can this be done locally? can LLMs generate long/lat?

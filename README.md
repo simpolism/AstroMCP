@@ -1,6 +1,6 @@
-# MCP Server Starter
+# AstroMCP
 
-A production-ready starter template for building Model Context Protocol (MCP) servers with TypeScript.
+A Model Context Protocol (MCP) server providing astrological chart functionality for AI assistants.
 
 ## 🚀 Quick Start
 
@@ -9,30 +9,62 @@ A production-ready starter template for building Model Context Protocol (MCP) se
    ```bash
    bun install
    ```
+3. Start the server:
+   ```bash
+   bun run start
+   ```
 
 ## ✨ Key Features
 
-- Bun for fast testing and development
-- Biome for linting and formatting
-- Automated version management with standard-version
-- Clean, maintainable project structure
+- Generate detailed astrological charts based on date, time, and location
+- Seamless integration with AI assistants via Model Context Protocol
+- Powered by [chart2txt](https://github.com/simpolism/chart2txt) for natural language chart interpretations
+- Uses OpenStreetMap for geocoding locations
+- Outputs planetary positions, house placements, and major aspects
 
 ## 📂 Project Structure
 
 ```
-mcp-starter/
+AstroMCP/
 ├── src/
-│   ├── tools/          # MCP tools implementation
-│   ├── utils/          # Shared utilities
-│   ├── main.ts         # Server entry point
-│   └── types.ts        # Shared type definitions
-├── tests/              # Test files
-├── biome.json          # Linting configuration
-├── tsconfig.json       # TypeScript configuration
-└── package.json        # Project dependencies
+│   ├── tools/
+│   │   ├── getChart/        # Astrological chart functionality
+│   │   └── ...              # Other tools
+│   ├── utils/               # Shared utilities
+│   ├── main.ts              # Server entry point
+│   └── types.ts             # Shared type definitions
+├── tests/                   # Test files
+├── biome.json               # Linting configuration
+├── tsconfig.json            # TypeScript configuration
+└── package.json             # Project dependencies
+```
+
+## 🔮 Using the Astrology Tool
+
+The `get_chart` tool accepts three parameters:
+
+- `date`: Date in YYYY-MM-DD format
+- `time`: Time in 24-hour format (HH:MM:SS)
+- `location`: Location in "city, country" format
+
+Example response:
+```
+Astrology Chart (location: New York, USA, at: 1/1/2001, 1:01:00 AM):
+
+Ascendant is at 21° Libra. Sun is at 10° Capricorn. Moon is at 21° Pisces. Mercury is at 14° Capricorn. Venus is at 27° Aquarius. Mars is at 5° Scorpio. Jupiter is at 2° Gemini. Saturn is at 24° Taurus. Uranus is at 18° Aquarius. Neptune is at 5° Aquarius. Pluto is at 13° Sagittarius.
+
+Sun is in house 4. Moon is in house 6. Mercury is in house 4. Venus is in house 5. Mars is in house 2. Jupiter is in house 9. Saturn is in house 8. Uranus is in house 5. Neptune is in house 5. Pluto is in house 3.
+
+Sun is in conjunction with Mercury (orb: 3.8°). Moon is in sextile with Saturn (orb: 2.8°). Venus is in square with Jupiter (orb: 4.9°). Venus is in square with Saturn (orb: 2.7°). Mars is in square with Neptune (orb: 0.3°). Jupiter is in trine with Neptune (orb: 3.2°).
 ```
 
 ## ⚙️ Configuration
+
+### API Endpoints
+
+The server uses the following API endpoints:
+- OpenStreetMap API for geocoding locations
+- [Simple Astro API](https://github.com/simpolism/simple-astro-api) for planetary calculations (currently using hosted version)
 
 ### Creating New Tools
 
@@ -42,19 +74,6 @@ The project includes a script to help create new MCP tools:
 bun run scripts/create-tool.ts <tool-name>
 ```
 
-This will:
-1. Create a new tool directory under `src/tools/<tool-name>`
-2. Generate the basic tool structure including:
-   - index.ts (main implementation)
-   - schema.ts (JSON schema for tool parameters)
-   - test.ts (test file)
-3. Update the tools index file to export the new tool
-
-Example:
-```bash
-bun run scripts/create-tool.ts weather
-```
-
 ## 🛠️ Development
 
 - **Run tests**: `bun test`
@@ -62,7 +81,7 @@ bun run scripts/create-tool.ts weather
 - **Lint code**: `bun run lint`
 - **Build project**: `bun run build`
 
-To add your development MCP server to Claude Desktop:
+To add your AstroMCP server to Claude Desktop:
 
 1. Build the project:
    ```bash
@@ -70,25 +89,15 @@ To add your development MCP server to Claude Desktop:
    ```
 2. Add to your Claude Desktop config:
    ```json
-   // You only need the argument if you need to pass arguments to your server
    {
      "mcpServers": {
-       "your-server-name": {
-         "command": "node",
-         "args": ["/path/to/your/project/dist/main.js", "some_argument"]
+       "astro-mcp": {
+         "command": "/path/to/node",
+         "args": ["/path/to/AstroMCP/dist/main.js"]
        }
      }
    }
    ```
-
-## 📜 Version Management
-
-This project uses [standard-version](https://github.com/conventional-changelog/standard-version) for automated version management. Run `bun run release` to create a new version.
-
-### Commit Message Format
-- `feat`: New feature (bumps minor version)
-- `fix`: Bug fix (bumps patch version)
-- `BREAKING CHANGE`: Breaking change (bumps major version)
 
 ## 📦 Publishing to npm
 
@@ -104,18 +113,17 @@ This project uses [standard-version](https://github.com/conventional-changelog/s
    ```bash
    npm publish
    ```
-Remember to update the version number using `bun run release` before publishing new versions.
 
 ## Installing from npm (after publishing)
 
 Add to your Claude Desktop config:
 ```json
-// You only need the argument if you need to pass arguments to your server
 {
   "mcpServers": {
-    "your-server-name": {
+    "astro-server": {
       "command": "npx",
-      "args": ["-y", "your-package-name", "some_argument"]
+      "args": ["-y", "astro-mcp"]
     }
   }
 }
+```
