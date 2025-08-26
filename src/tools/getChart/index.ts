@@ -16,8 +16,7 @@ export async function geocodeLocation(
 		params.append("limit", "1");
 
 		const response = await fetch(
-			`https://photon.komoot.io/api?${params.toString()}`,
-			{ headers: { "Accept-Language": "en-US,en" } },
+			`https://photon.komoot.io/api?${params.toString()}`
 		);
 
 		const data = await response.json();
