@@ -1,7 +1,7 @@
 {
   "name": "astrology-mcp-server",
   "description": "An MCP server for querying astrological data.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Simpolism",
     "email": "simpolism@gmail.com",

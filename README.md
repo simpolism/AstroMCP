@@ -19,7 +19,7 @@ A Model Context Protocol (MCP) server providing astrological chart functionality
 - Generate detailed astrological charts based on date, time, and location
 - Seamless integration with AI assistants via Model Context Protocol
 - Powered by [chart2txt](https://github.com/simpolism/chart2txt) for natural language chart interpretations
-- Uses OpenStreetMap for geocoding locations
+- Uses Photon geocoding API for location lookups
 - Outputs planetary positions, house placements, and major aspects
 
 ## 📂 Project Structure
@@ -63,7 +63,7 @@ Sun is in conjunction with Mercury (orb: 3.8°). Moon is in sextile with Saturn 
 ### API Endpoints
 
 The server uses the following API endpoints:
-- OpenStreetMap API for geocoding locations
+- Photon API (photon.komoot.io) for geocoding locations
 - [Simple Astro API](https://github.com/simpolism/simple-astro-api) for planetary calculations (currently using hosted version)
 
 ### Creating New Tools
