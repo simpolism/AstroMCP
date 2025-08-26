@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server providing astrological chart functionality for AI assistants.
 
+[![npm version](https://badge.fury.io/js/astrology-mcp-server.svg)](https://badge.fury.io/js/astrology-mcp-server)
+
 ## 🚀 Quick Start
 
 1. Clone the repository
