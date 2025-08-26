@@ -1,25 +1,33 @@
 import type { ToolRegistration } from "@/types";
 import { makeJsonSchema } from "@/utils/makeJsonSchema";
-import { type GetChartSchema, getChartSchema } from "./schema";
 import { chart2txt } from "chart2txt";
+import { type GetChartSchema, getChartSchema } from "./schema";
 
-// Function to geocode location using OpenStreetMap API
+// Function to geocode location using Photon API
 // TODO: can this be done locally? can LLMs generate long/lat?
 export async function geocodeLocation(
 	locationString: string,
 ): Promise<{ latitude: number; longitude: number }> {
 	try {
+		const params = new URLSearchParams();
+		params.append("layer", "city");
+		params.append("layer", "district");
+		params.append("q", locationString);
+		params.append("limit", "1");
+
 		const response = await fetch(
-			`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationString)}`,
+			`https://photon.komoot.io/api?${params.toString()}`,
 			{ headers: { "Accept-Language": "en-US,en" } },
 		);
 
 		const data = await response.json();
 
-		if (data && data.length > 0) {
+		if (data?.features && data.features.length > 0) {
+			const coordinates = data.features[0].geometry.coordinates;
 			return {
-				latitude: Number.parseFloat(data[0].lat),
-				longitude: Number.parseFloat(data[0].lon),
+				// Note: GeoJSON format returns [longitude, latitude]
+				latitude: coordinates[1],
+				longitude: coordinates[0],
 			};
 		}
 
